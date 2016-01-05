@@ -66,11 +66,18 @@
 
     .prologue
     .line 40
-    const-string v0, "hook_jni"
+	:try_start_0
+    const-string v1, "hook_jni"
 
-    invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
-
-    .line 333
+    invoke-static {v1}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+	
+	:try_end_0
+	.catch Ljava/lang/UnsatisfiedLinkError; {:try_start_0 .. :try_end_0} :catch_0
+	
+	.local v0, "e":Ljava/lang/UnsatisfiedLinkError;
+	
+    :goto_0
+	.line 333
     const-class v0, Landroid/hardware/Camera$Parameters;
 
     const-string v1, "splitArea"
@@ -93,6 +100,40 @@
 
     .line 334
     return-void
+	
+	.end local v0    # "e":Ljava/lang/UnsatisfiedLinkError;
+    :catch_0
+    move-exception v0
+	
+	.restart local v0    # "e":Ljava/lang/UnsatisfiedLinkError;
+    const-string v1, "CameraApp"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "can\'t loadLibrary hook_jni\r\n"
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v0}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Lcom/lge/camera/util/CamLog;->e(Ljava/lang/String;Ljava/lang/String;)V
+
+    goto :goto_0
+	
 .end method
 
 .method public constructor <init>(I)V

@@ -484,7 +484,11 @@ public class LGCamera {
     private final native void native_setOBTDataCallbackMode(Camera camera, boolean z);
 
     static {
+		try {
         System.loadLibrary("hook_jni");
+		} catch (UnsatisfiedLinkError e) {
+            CamLog.e("CameraApp", "can't loadLibrary hook_jni\r\n" + e.getMessage());
+        }
         sSplitAreaMethod = ProxyUtil.loadMethod(Parameters.class, "splitArea", String.class);
     }
 
