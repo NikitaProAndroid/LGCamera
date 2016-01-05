@@ -222,7 +222,7 @@ public final class ProjectVariables {
             case ModelProperties.CODE_GXR /*32*/:
                 if (SystemProperties.getInt("persist.service.main.enable", KEYCODE_QCLIP_HOT_KEY) == 0) {
                     Log.d(FaceDetector.TAG, "####### logServiceEnable = 0 : Log service is disable. Please set log service to enable for debug. ");
-                    return false;
+                    return true;
                 }
                 Log.d(FaceDetector.TAG, "####### logServiceEnable = 1 : Log service is enable. You can debug log messages. ");
                 return true;

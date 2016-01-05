@@ -612,12 +612,14 @@
     if-nez v0, :cond_0
 
     .line 281
-    const-string v2, "CameraApp"
+    const-string v1, "CameraApp"
 
     const-string v3, "####### logServiceEnable = 0 : Log service is disable. Please set log service to enable for debug. "
 
-    invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v1, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
+	move v1, v2
+	
     goto :goto_0
 
     .line 285
