@@ -7,8 +7,6 @@ import android.media.AudioSystem;
 import com.lge.camera.properties.CameraConstants;
 import com.lge.camera.properties.ModelProperties;
 import com.lge.olaworks.library.FaceDetector;
-import com.lge.systemservice.core.LGContext;
-import com.lge.systemservice.core.VolumeVibratorManager;
 import com.lge.voiceshutter.library.LGKeyRec;
 
 public class AudioUtil {
@@ -219,6 +217,5 @@ public class AudioUtil {
     }
 
     public static void setVibrationMute(Context context, boolean state) {
-        ((VolumeVibratorManager) new LGContext(context).getLGSystemService("volumevibrator")).setVibrateMute(state);
     }
 }

@@ -16,7 +16,6 @@ import com.lge.morpho.utils.multimedia.MediaProviderUtils;
 import com.lge.olaworks.define.Limit;
 import com.lge.olaworks.define.Ola_Exif.Tag;
 import com.lge.olaworks.library.FaceDetector;
-import com.lge.systemservice.core.LGContext;
 import com.lge.systemservice.core.OsManager;
 import com.lge.voiceshutter.library.LGKeyRec;
 
@@ -84,7 +83,7 @@ public class OrientationInfo {
     }
 
     public void initOsManager() {
-        this.mOsManager = (OsManager) new LGContext(this.mGet.getActivity()).getLGSystemService("osservice");
+        this.mOsManager = null;
     }
 
     public void initailizeOrientation() {

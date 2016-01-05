@@ -989,23 +989,6 @@
 
     .prologue
     .line 267
-    new-instance v0, Lcom/lge/systemservice/core/LGContext;
-
-    invoke-direct {v0, p0}, Lcom/lge/systemservice/core/LGContext;-><init>(Landroid/content/Context;)V
-
-    .line 268
-    .local v0, "mLGContext":Lcom/lge/systemservice/core/LGContext;
-    const-string v2, "volumevibrator"
-
-    invoke-virtual {v0, v2}, Lcom/lge/systemservice/core/LGContext;->getLGSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v1
-
-    check-cast v1, Lcom/lge/systemservice/core/VolumeVibratorManager;
-
-    .line 270
-    .local v1, "mVibrationManager":Lcom/lge/systemservice/core/VolumeVibratorManager;
-    invoke-virtual {v1, p1}, Lcom/lge/systemservice/core/VolumeVibratorManager;->setVibrateMute(Z)V
 
     .line 271
     return-void

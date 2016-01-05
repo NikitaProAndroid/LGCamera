@@ -684,33 +684,13 @@
 .end method
 
 .method public initOsManager()V
-    .locals 2
+    .locals 1
 
     .prologue
-    .line 90
-    new-instance v0, Lcom/lge/systemservice/core/LGContext;
 
-    iget-object v1, p0, Lcom/lge/camera/OrientationInfo;->mGet:Lcom/lge/camera/OrientationInfo$OrientationRotateFunction;
+    const/4 v0, 0x0
 
-    invoke-interface {v1}, Lcom/lge/camera/OrientationInfo$OrientationRotateFunction;->getActivity()Landroid/app/Activity;
-
-    move-result-object v1
-
-    invoke-direct {v0, v1}, Lcom/lge/systemservice/core/LGContext;-><init>(Landroid/content/Context;)V
-
-    .line 91
-    .local v0, "tempLGContext":Lcom/lge/systemservice/core/LGContext;
-    const-string v1, "osservice"
-
-    invoke-virtual {v0, v1}, Lcom/lge/systemservice/core/LGContext;->getLGSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v1
-
-    check-cast v1, Lcom/lge/systemservice/core/OsManager;
-
-    check-cast v1, Lcom/lge/systemservice/core/OsManager;
-
-    iput-object v1, p0, Lcom/lge/camera/OrientationInfo;->mOsManager:Lcom/lge/systemservice/core/OsManager;
+    iput-object v0, p0, Lcom/lge/camera/OrientationInfo;->mOsManager:Lcom/lge/systemservice/core/OsManager;
 
     .line 92
     return-void
