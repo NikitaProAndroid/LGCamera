@@ -1,0 +1,71 @@
+package com.lge.olaworks.define;
+
+public class LGT_Limit {
+    public static String[] FdFilename = null;
+    public static final int IMAGE_SIZE_CONTACT_HEIGHT = 95;
+    public static final int IMAGE_SIZE_CONTACT_WIDTH = 95;
+    public static final int IMAGE_SIZE_WALLPAPER_HEIGHT = 800;
+    public static final int IMAGE_SIZE_WALLPAPER_WIDTH = 960;
+    public static final String ISP_AUTOMODE = "automode";
+    public static final String ISP_AUTOMODE_AUTO = "auto";
+    public static final String ISP_AUTOMODE_GETMODE = "autoscene";
+    public static final String ISP_AUTOMODE_PROGRAM = "program";
+    public static final String ISP_BRIGHTNESS = "luma-adaptation";
+    public static final String ISP_COLOUR_EFFECT = "effect";
+    public static final int ISP_DEFAULT_BRIGHTNESS_LEVEL = 4;
+    public static final int ISP_DEFAULT_MACRO_LEVEL = 0;
+    public static final int ISP_DEFAULT_ZOOM_LEVEL = 0;
+    public static final String ISP_FOCUS = "autofocus";
+    public static final String ISP_ISO = "iso";
+    public static final String ISP_MANUAL_FOCUS = "mf-step";
+    public static final int ISP_MAX_BRIGHTNESS_LEVEL = 9;
+    public static final int ISP_MAX_MACRO_LEVEL = 9;
+    public static final int ISP_MAX_ZOOM_LEVEL = 10;
+    public static final String ISP_ORIENTATION = "jpeg-orientation";
+    public static final String ISP_ORIENTATION_LANDSCAPE = "landscape";
+    public static final String ISP_ORIENTATION_PORTRAIT = "portrait";
+    public static final String ISP_WHITE_BALANCE = "whitebalance";
+    public static final String ISP_ZOOM = "zoom";
+    public static final int MAX_CONTINUOUS_PIC = 6;
+    public static final int MAX_FACE_NUM = 5;
+    public static final int MAX_PIXEL_COUNT = 2097152;
+    public static final int OLA_BLINK_DATA_SIZE_BYTE = 12;
+    public static final int OLA_BLINK_DATA_SIZE_SHORT = 6;
+    public static final String OLA_CONTINOUS_FILE_1 = "/data/media/ola-cont-1.jpg";
+    public static final String OLA_CONTINOUS_FILE_2 = "/data/media/ola-cont-2.jpg";
+    public static final String OLA_CONTINOUS_FILE_3 = "/data/media/ola-cont-3.jpg";
+    public static final String OLA_CONTINOUS_FILE_4 = "/data/media/ola-cont-4.jpg";
+    public static final String OLA_CONTINOUS_FILE_5 = "/data/media/ola-cont-5.jpg";
+    public static final String OLA_CONTINOUS_FILE_6 = "/data/media/ola-cont-6.jpg";
+    public static final int OLA_DATA_HEADER_SIZE_BYTE = 8;
+    public static final int OLA_DATA_HEADER_SIZE_SHORT = 4;
+    public static final String OLA_ENGINE_FILE = "/data/data/com.lge.camera/ola-fifo";
+    public static final int OLA_FACE_DATA_SIZE_BYTE = 8;
+    public static final int OLA_FACE_DATA_SIZE_SHORT = 4;
+    public static final String OLA_FACE_THUMB_1 = "/data/media/ola-fd-1.jpg";
+    public static final String OLA_FACE_THUMB_2 = "/data/media/ola-fd-2.jpg";
+    public static final String OLA_FACE_THUMB_3 = "/data/media/ola-fd-3.jpg";
+    public static final String OLA_FACE_THUMB_4 = "/data/media/ola-fd-4.jpg";
+    public static final String OLA_FACE_THUMB_5 = "/data/media/ola-fd-5.jpg";
+    public static final String OLA_FD_DATA_FILENAME = "/data/media/ola-fd.dat";
+    public static final int OLA_FIFO_DATA_MAX_SIZE_BYTE = 80;
+    public static final int OLA_FIFO_DATA_MAX_SIZE_SHORT = 40;
+    public static final String OLA_PANORAMA_FILENAME = "/data/media/ola-panorama.jpg";
+    public static final int OLA_SMILE_DATA_SIZE_BYTE = 12;
+    public static final int OLA_SMILE_DATA_SIZE_SHORT = 6;
+    public static final String OLA_SNOW_DATA_FILENAME = "/data/media/ola-snow.dat";
+    public static final int PREVIEW_ISP_SIZE_HEIGHT = 480;
+    public static final int PREVIEW_ISP_SIZE_WIDTH = 640;
+    public static final int PREVIEW_SIZE_HEIGHT = 480;
+    public static final int PREVIEW_SIZE_WIDTH = 640;
+
+    static {
+        String[] strArr = new String[MAX_FACE_NUM];
+        strArr[ISP_DEFAULT_ZOOM_LEVEL] = OLA_FACE_THUMB_1;
+        strArr[1] = OLA_FACE_THUMB_2;
+        strArr[2] = OLA_FACE_THUMB_3;
+        strArr[3] = OLA_FACE_THUMB_4;
+        strArr[OLA_FACE_DATA_SIZE_SHORT] = OLA_FACE_THUMB_5;
+        FdFilename = strArr;
+    }
+}
