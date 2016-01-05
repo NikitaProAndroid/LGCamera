@@ -191,8 +191,8 @@ public class SetCameraShotMode extends SettingCommand {
                 this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_CAMERA_AUTO_REVIEW, true);
             }
             ListPreference pref = this.mGet.findPreference(Setting.KEY_SCENE_MODE);
-            if (!(pref == null || pref.findIndexOfValue(Setting.HELP_NIGHT) == -1)) {
-                this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, Setting.HELP_NIGHT, true);
+            if (!(pref == null || pref.findIndexOfValue(LGParameters.SCENE_MODE_NIGHT) == -1)) {
+                this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, LGParameters.SCENE_MODE_NIGHT, true);
             }
             this.mGet.smartShutterEnable(true);
             int pictureSizeIndex = this.mGet.getSettingIndex(Setting.KEY_CAMERA_PICTURESIZE);
@@ -274,7 +274,7 @@ public class SetCameraShotMode extends SettingCommand {
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_SHUTTER_SOUND, false);
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_CAMERA_AUTO_REVIEW, true);
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_TIME_MACHINE, false);
-        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, Setting.HELP_NIGHT, true);
+        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, LGParameters.SCENE_MODE_NIGHT, true);
         this.mGet.doCommand(Command.CONTINUOUS_SHOT, lgParameters);
         checkFocusMode(lgParameters.getParameters());
         ListPreference shotModePref = this.mGet.findPreference(Setting.KEY_CAMERA_SHOT_MODE);
@@ -333,7 +333,7 @@ public class SetCameraShotMode extends SettingCommand {
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_SHUTTER_SOUND, false);
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_CAMERA_AUTO_REVIEW, true);
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_TIME_MACHINE, false);
-        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, Setting.HELP_NIGHT, true);
+        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, LGParameters.SCENE_MODE_NIGHT, true);
         this.mGet.doCommand(Command.PANORAMA_SHOT, lgParameters);
         checkFocusMode(lgParameters.getParameters());
         ListPreference shotModePref = this.mGet.findPreference(Setting.KEY_CAMERA_SHOT_MODE);
@@ -466,7 +466,7 @@ public class SetCameraShotMode extends SettingCommand {
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_FOCUS, false);
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_CAMERA_PICTURESIZE, false);
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_TIME_MACHINE, false);
-        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, Setting.HELP_NIGHT, true);
+        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, LGParameters.SCENE_MODE_NIGHT, true);
         lgParameters.getParameters().setZoom(0);
         this.mGet.resetZoomController();
         this.mGet.doCommand(Command.FREE_PANORAMA_SHOT, lgParameters);
@@ -587,7 +587,7 @@ public class SetCameraShotMode extends SettingCommand {
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_SHUTTER_SOUND, false);
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_CAMERA_AUTO_REVIEW, true);
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_TIME_MACHINE, false);
-        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, Setting.HELP_NIGHT, false);
+        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, LGParameters.SCENE_MODE_NIGHT, false);
         if (FunctionProperties.isSupportBurstShot()) {
             lgParameters.getParameters().set("burst-shot", CameraConstants.SMART_MODE_ON);
         } else {
@@ -648,7 +648,7 @@ public class SetCameraShotMode extends SettingCommand {
         } else {
             this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_VOICESHUTTER, true);
         }
-        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, Setting.HELP_NIGHT, false);
+        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, LGParameters.SCENE_MODE_NIGHT, false);
         int pictureSizeIndex = this.mGet.getSettingIndex(Setting.KEY_CAMERA_PICTURESIZE);
         ListPreference pictureSizePref = this.mGet.findPreference(Setting.KEY_CAMERA_PICTURESIZE);
         if (pictureSizePref != null) {
@@ -708,7 +708,7 @@ public class SetCameraShotMode extends SettingCommand {
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_SHUTTER_SOUND, true);
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_CAMERA_AUTO_REVIEW, true);
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_TIME_MACHINE, false);
-        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, Setting.HELP_NIGHT, true);
+        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, LGParameters.SCENE_MODE_NIGHT, true);
         this.mGet.doCommand(Command.MAIN_BEAUTY_SHOT, lgParameters);
         checkFocusMode(lgParameters.getParameters());
         int pictureSizeIndex = this.mGet.getSettingIndex(Setting.KEY_CAMERA_PICTURESIZE);
@@ -807,7 +807,7 @@ public class SetCameraShotMode extends SettingCommand {
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_CAMERA_AUTO_REVIEW, false);
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_FLASH, false);
         this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_TIME_MACHINE, false);
-        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, Setting.HELP_NIGHT, false);
+        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, LGParameters.SCENE_MODE_NIGHT, false);
         this.mGet.doCommand(Command.CLEAR_SHOT, lgParameters);
         checkFocusMode(lgParameters.getParameters());
         int pictureSizeIndex = this.mGet.getSettingIndex(Setting.KEY_CAMERA_PICTURESIZE);
@@ -953,7 +953,7 @@ public class SetCameraShotMode extends SettingCommand {
         } else {
             this.mGet.setPreferenceMenuOnlyEnable(Setting.KEY_VOICESHUTTER, true);
         }
-        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, Setting.HELP_NIGHT, false);
+        this.mGet.setCurrentSettingMenuEnable(Setting.KEY_SCENE_MODE, LGParameters.SCENE_MODE_NIGHT, false);
         int pictureSizeIndex = this.mGet.getSettingIndex(Setting.KEY_CAMERA_PICTURESIZE);
         ListPreference pictureSizePref = this.mGet.findPreference(Setting.KEY_CAMERA_PICTURESIZE);
         if (pictureSizePref != null) {

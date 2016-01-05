@@ -79,7 +79,7 @@ public class SetSceneMode extends SettingCommand {
         }
         if (!(this.oldSceneModeValue != null && this.oldSceneModeValue.equals(this.newSelectedSceneMode) && LGT_Limit.ISP_AUTOMODE_AUTO.equals(this.mBackupSceneMode))) {
             CamLog.i(FaceDetector.TAG, "####### scene mode set to " + this.newSelectedSceneMode);
-            if (this.mGet.isTimeMachineModeOn() || CameraConstants.TYPE_SHOTMODE_PANORAMA.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_PLANE_PANORAMA.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_FREE_PANORAMA.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_CONTINUOUS.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_FULL_CONTINUOUS.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_HDR.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_DUAL_CAMERA.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_REFOCUS.equals(shotMode) || this.mGet.getCameraId() == 1 || Setting.HELP_NIGHT.equals(this.newSelectedSceneMode)) {
+            if (this.mGet.isTimeMachineModeOn() || CameraConstants.TYPE_SHOTMODE_PANORAMA.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_PLANE_PANORAMA.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_FREE_PANORAMA.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_CONTINUOUS.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_FULL_CONTINUOUS.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_HDR.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_DUAL_CAMERA.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_REFOCUS.equals(shotMode) || this.mGet.getCameraId() == 1 || LGParameters.SCENE_MODE_NIGHT.equals(this.newSelectedSceneMode)) {
                 this.mGet.setPreferenceMenuEnable(Setting.KEY_FLASH, false, false);
             } else {
                 this.mGet.setPreferenceMenuEnable(Setting.KEY_FLASH, true, false);
@@ -123,7 +123,7 @@ public class SetSceneMode extends SettingCommand {
             }
             String flashMode = this.mGet.getSettingValue(Setting.KEY_FLASH);
             if (!CameraConstants.TYPE_PREFERENCE_NOT_FOUND.equals(flashMode) && this.mGet.getCameraId() == 0) {
-                if (Setting.HELP_NIGHT.equals(this.newSelectedSceneMode)) {
+                if (LGParameters.SCENE_MODE_NIGHT.equals(this.newSelectedSceneMode)) {
                     flashMode = CameraConstants.SMART_MODE_OFF;
                 }
                 parameters.setFlashMode(flashMode);
@@ -144,8 +144,8 @@ public class SetSceneMode extends SettingCommand {
         if (this.mGet.isRotateDialogVisible()) {
             this.mGet.onDismissRotateDialog();
         }
-        if (Setting.HELP_NIGHT.equals(sceneMode)) {
-            return this.mGet.showHelpGuidePopup(Setting.HELP_NIGHT, DialogCreater.DIALOG_ID_HELP_NIGHT, true);
+        if (LGParameters.SCENE_MODE_NIGHT.equals(sceneMode)) {
+            return this.mGet.showHelpGuidePopup(LGParameters.SCENE_MODE_NIGHT, DialogCreater.DIALOG_ID_HELP_NIGHT, true);
         }
         if (Setting.HELP_SPORTS.equals(sceneMode)) {
             return this.mGet.showHelpGuidePopup(Setting.HELP_SPORTS, DialogCreater.DIALOG_ID_HELP_SPORTS, true);
@@ -165,7 +165,7 @@ public class SetSceneMode extends SettingCommand {
                             if (CameraConstants.SCENE_MODE_SMART_SHUTTER.equals(currentSceneMode) && ModelProperties.getCarrierCode() == 4) {
                                 SetSceneMode.this.mGet.toast(SetSceneMode.this.mGet.getString(R.string.sp_help_scene_mode_menu_action_desc_NORMAL));
                             }
-                        } else if (ModelProperties.isRenesasISP() && !SetSceneMode.this.oldSceneModeValue.equals(currentSceneMode) && ((Setting.HELP_NIGHT.equals(currentSceneMode) || (Setting.HELP_NIGHT.equals(SetSceneMode.this.oldSceneModeValue) && !Setting.HELP_NIGHT.equals(currentSceneMode))) && !SetSceneMode.this.noNeedRestartPreview)) {
+                        } else if (ModelProperties.isRenesasISP() && !SetSceneMode.this.oldSceneModeValue.equals(currentSceneMode) && ((LGParameters.SCENE_MODE_NIGHT.equals(currentSceneMode) || (LGParameters.SCENE_MODE_NIGHT.equals(SetSceneMode.this.oldSceneModeValue) && !LGParameters.SCENE_MODE_NIGHT.equals(currentSceneMode))) && !SetSceneMode.this.noNeedRestartPreview)) {
                             SetSceneMode.this.mGet.restartPreview(null, true);
                         }
                     }

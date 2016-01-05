@@ -7,9 +7,12 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-import com.lge.gles.GLESConfig;
+import com.lge.camera.properties.CameraConstants;
+import com.lge.camera.setting.SettingMenu;
+import com.lge.camera.util.CamLog;
+import com.lge.olaworks.define.Ola_ShotParam;
+import com.lge.olaworks.library.FaceDetector;
 import com.lge.util.ProxyUtil;
-import com.lge.wfds.session.AspSessionProtoOpcode;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
@@ -58,7 +61,7 @@ public class LGCamera {
             byte[] byteData;
             switch (msg.what) {
                 case LGCamera.CAMERA_MSG_STATS_DATA /*4096*/:
-                    int[] statsdata = new int[257];
+                    int[] statsdata = new int[Ola_ShotParam.FaceEffect_Sepia];
                     for (i = 0; i < 257; i++) {
                         statsdata[i] = LGCamera.byteToInt((byte[]) msg.obj, i * LGCamera.CAMERA_META_DATA_HDR_INDICATOR);
                     }
@@ -110,22 +113,22 @@ public class LGCamera {
                                     ptr2 = ptr + 1;
                                     ptr = ptr2 + 1;
                                     ptr2 = ptr + 1;
-                                    int ia = (((lg_manual_data[0] & AspSessionProtoOpcode.NACK) | ((lg_manual_data[ptr] & AspSessionProtoOpcode.NACK) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((lg_manual_data[ptr2] & AspSessionProtoOpcode.NACK) << 16)) | ((lg_manual_data[ptr] & AspSessionProtoOpcode.NACK) << 24);
+                                    int ia = (((lg_manual_data[0] & Ola_ShotParam.AnimalMask_Random) | ((lg_manual_data[ptr] & Ola_ShotParam.AnimalMask_Random) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((lg_manual_data[ptr2] & Ola_ShotParam.AnimalMask_Random) << 16)) | ((lg_manual_data[ptr] & Ola_ShotParam.AnimalMask_Random) << 24);
                                     ptr = ptr2 + 1;
                                     ptr2 = ptr + 1;
                                     ptr = ptr2 + 1;
                                     ptr2 = ptr + 1;
-                                    int ib = (((lg_manual_data[ptr2] & AspSessionProtoOpcode.NACK) | ((lg_manual_data[ptr] & AspSessionProtoOpcode.NACK) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((lg_manual_data[ptr2] & AspSessionProtoOpcode.NACK) << 16)) | ((lg_manual_data[ptr] & AspSessionProtoOpcode.NACK) << 24);
+                                    int ib = (((lg_manual_data[ptr2] & Ola_ShotParam.AnimalMask_Random) | ((lg_manual_data[ptr] & Ola_ShotParam.AnimalMask_Random) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((lg_manual_data[ptr2] & Ola_ShotParam.AnimalMask_Random) << 16)) | ((lg_manual_data[ptr] & Ola_ShotParam.AnimalMask_Random) << 24);
                                     ptr = ptr2 + 1;
                                     ptr2 = ptr + 1;
                                     ptr = ptr2 + 1;
                                     ptr2 = ptr + 1;
-                                    int ic = (((lg_manual_data[ptr2] & AspSessionProtoOpcode.NACK) | ((lg_manual_data[ptr] & AspSessionProtoOpcode.NACK) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((lg_manual_data[ptr2] & AspSessionProtoOpcode.NACK) << 16)) | ((lg_manual_data[ptr] & AspSessionProtoOpcode.NACK) << 24);
+                                    int ic = (((lg_manual_data[ptr2] & Ola_ShotParam.AnimalMask_Random) | ((lg_manual_data[ptr] & Ola_ShotParam.AnimalMask_Random) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((lg_manual_data[ptr2] & Ola_ShotParam.AnimalMask_Random) << 16)) | ((lg_manual_data[ptr] & Ola_ShotParam.AnimalMask_Random) << 24);
                                     ptr = ptr2 + 1;
                                     ptr2 = ptr + 1;
                                     ptr = ptr2 + 1;
                                     ptr2 = ptr + 1;
-                                    int id = (((lg_manual_data[ptr2] & AspSessionProtoOpcode.NACK) | ((lg_manual_data[ptr] & AspSessionProtoOpcode.NACK) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((lg_manual_data[ptr2] & AspSessionProtoOpcode.NACK) << 16)) | ((lg_manual_data[ptr] & AspSessionProtoOpcode.NACK) << 24);
+                                    int id = (((lg_manual_data[ptr2] & Ola_ShotParam.AnimalMask_Random) | ((lg_manual_data[ptr] & Ola_ShotParam.AnimalMask_Random) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((lg_manual_data[ptr2] & Ola_ShotParam.AnimalMask_Random) << 16)) | ((lg_manual_data[ptr] & Ola_ShotParam.AnimalMask_Random) << 24);
                                     float a = Float.intBitsToFloat(ia);
                                     float b = Float.intBitsToFloat(ib);
                                     float c = Float.intBitsToFloat(ic);
@@ -144,16 +147,16 @@ public class LGCamera {
                     if (LGCamera.this.mCameraDataCallback != null) {
                         short[] obt_data = new short[5];
                         byteData = (byte[]) msg.obj;
-                        int i2 = byteData[1] & AspSessionProtoOpcode.NACK;
-                        obt_data[0] = (short) ((r0 << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR) | (byteData[0] & AspSessionProtoOpcode.NACK));
-                        i2 = byteData[3] & AspSessionProtoOpcode.NACK;
-                        obt_data[1] = (short) ((r0 << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR) | (byteData[2] & AspSessionProtoOpcode.NACK));
-                        i2 = byteData[5] & AspSessionProtoOpcode.NACK;
-                        obt_data[2] = (short) ((r0 << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR) | (byteData[LGCamera.CAMERA_META_DATA_HDR_INDICATOR] & AspSessionProtoOpcode.NACK));
-                        i2 = byteData[7] & AspSessionProtoOpcode.NACK;
-                        obt_data[3] = (short) ((r0 << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR) | (byteData[6] & AspSessionProtoOpcode.NACK));
-                        i2 = byteData[9] & AspSessionProtoOpcode.NACK;
-                        obt_data[LGCamera.CAMERA_META_DATA_HDR_INDICATOR] = (short) ((r0 << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR) | (byteData[LGCamera.CAMERA_META_DATA_FLASH_INDICATOR] & AspSessionProtoOpcode.NACK));
+                        int i2 = byteData[1] & Ola_ShotParam.AnimalMask_Random;
+                        obt_data[0] = (short) ((r0 << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR) | (byteData[0] & Ola_ShotParam.AnimalMask_Random));
+                        i2 = byteData[3] & Ola_ShotParam.AnimalMask_Random;
+                        obt_data[1] = (short) ((r0 << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR) | (byteData[2] & Ola_ShotParam.AnimalMask_Random));
+                        i2 = byteData[5] & Ola_ShotParam.AnimalMask_Random;
+                        obt_data[2] = (short) ((r0 << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR) | (byteData[LGCamera.CAMERA_META_DATA_HDR_INDICATOR] & Ola_ShotParam.AnimalMask_Random));
+                        i2 = byteData[7] & Ola_ShotParam.AnimalMask_Random;
+                        obt_data[3] = (short) ((r0 << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR) | (byteData[6] & Ola_ShotParam.AnimalMask_Random));
+                        i2 = byteData[9] & Ola_ShotParam.AnimalMask_Random;
+                        obt_data[LGCamera.CAMERA_META_DATA_HDR_INDICATOR] = (short) ((r0 << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR) | (byteData[LGCamera.CAMERA_META_DATA_FLASH_INDICATOR] & Ola_ShotParam.AnimalMask_Random));
                         int[] obt_data_i = new int[5];
                         for (i = 0; i < 5; i++) {
                             obt_data_i[i] = obt_data[i];
@@ -169,27 +172,27 @@ public class LGCamera {
                             ptr2 = ptr + 1;
                             ptr = ptr2 + 1;
                             ptr2 = ptr + 1;
-                            data.val = (((byteData[0] & AspSessionProtoOpcode.NACK) | ((byteData[ptr] & AspSessionProtoOpcode.NACK) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((byteData[ptr2] & AspSessionProtoOpcode.NACK) << 16)) | ((byteData[ptr] & AspSessionProtoOpcode.NACK) << 24);
+                            data.val = (((byteData[0] & Ola_ShotParam.AnimalMask_Random) | ((byteData[ptr] & Ola_ShotParam.AnimalMask_Random) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((byteData[ptr2] & Ola_ShotParam.AnimalMask_Random) << 16)) | ((byteData[ptr] & Ola_ShotParam.AnimalMask_Random) << 24);
                             ptr = ptr2 + 1;
                             ptr2 = ptr + 1;
                             ptr = ptr2 + 1;
                             ptr2 = ptr + 1;
-                            data.conv = (((byteData[ptr2] & AspSessionProtoOpcode.NACK) | ((byteData[ptr] & AspSessionProtoOpcode.NACK) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((byteData[ptr2] & AspSessionProtoOpcode.NACK) << 16)) | ((byteData[ptr] & AspSessionProtoOpcode.NACK) << 24);
+                            data.conv = (((byteData[ptr2] & Ola_ShotParam.AnimalMask_Random) | ((byteData[ptr] & Ola_ShotParam.AnimalMask_Random) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((byteData[ptr2] & Ola_ShotParam.AnimalMask_Random) << 16)) | ((byteData[ptr] & Ola_ShotParam.AnimalMask_Random) << 24);
                             ptr = ptr2 + 1;
                             ptr2 = ptr + 1;
                             ptr = ptr2 + 1;
                             ptr2 = ptr + 1;
-                            data.sig = (((byteData[ptr2] & AspSessionProtoOpcode.NACK) | ((byteData[ptr] & AspSessionProtoOpcode.NACK) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((byteData[ptr2] & AspSessionProtoOpcode.NACK) << 16)) | ((byteData[ptr] & AspSessionProtoOpcode.NACK) << 24);
+                            data.sig = (((byteData[ptr2] & Ola_ShotParam.AnimalMask_Random) | ((byteData[ptr] & Ola_ShotParam.AnimalMask_Random) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((byteData[ptr2] & Ola_ShotParam.AnimalMask_Random) << 16)) | ((byteData[ptr] & Ola_ShotParam.AnimalMask_Random) << 24);
                             ptr = ptr2 + 1;
                             ptr2 = ptr + 1;
                             ptr = ptr2 + 1;
                             ptr2 = ptr + 1;
-                            data.amb = (((byteData[ptr2] & AspSessionProtoOpcode.NACK) | ((byteData[ptr] & AspSessionProtoOpcode.NACK) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((byteData[ptr2] & AspSessionProtoOpcode.NACK) << 16)) | ((byteData[ptr] & AspSessionProtoOpcode.NACK) << 24);
+                            data.amb = (((byteData[ptr2] & Ola_ShotParam.AnimalMask_Random) | ((byteData[ptr] & Ola_ShotParam.AnimalMask_Random) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((byteData[ptr2] & Ola_ShotParam.AnimalMask_Random) << 16)) | ((byteData[ptr] & Ola_ShotParam.AnimalMask_Random) << 24);
                             ptr = ptr2 + 1;
                             ptr2 = ptr + 1;
                             ptr = ptr2 + 1;
                             ptr2 = ptr + 1;
-                            data.raw = (((byteData[ptr2] & AspSessionProtoOpcode.NACK) | ((byteData[ptr] & AspSessionProtoOpcode.NACK) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((byteData[ptr2] & AspSessionProtoOpcode.NACK) << 16)) | ((byteData[ptr] & AspSessionProtoOpcode.NACK) << 24);
+                            data.raw = (((byteData[ptr2] & Ola_ShotParam.AnimalMask_Random) | ((byteData[ptr] & Ola_ShotParam.AnimalMask_Random) << LGCamera.CAMERA_META_DATA_FLASH_INDICATOR)) | ((byteData[ptr2] & Ola_ShotParam.AnimalMask_Random) << 16)) | ((byteData[ptr] & Ola_ShotParam.AnimalMask_Random) << 24);
                         } else {
                             data.val = -1;
                         }
@@ -269,26 +272,26 @@ public class LGCamera {
         }
 
         private void setDefaultParam() {
-            this.mParameters.set(KEY_SUPERZOOM, "off");
+            this.mParameters.set(KEY_SUPERZOOM, CameraConstants.SMART_MODE_OFF);
             this.mParameters.set(KEY_HDR_MODE, "0");
             this.mParameters.setSceneMode(SCENE_MODE_AUTO);
             this.mParameters.set(KEY_PANORAMA, "0");
         }
 
         private void setHDROnParam() {
-            this.mParameters.set(KEY_HDR_MODE, GLESConfig.MAJOR_NUMBER);
-            this.mParameters.set(KEY_SUPERZOOM, "off");
+            this.mParameters.set(KEY_HDR_MODE, "1");
+            this.mParameters.set(KEY_SUPERZOOM, CameraConstants.SMART_MODE_OFF);
             this.mParameters.setSceneMode(SCENE_MODE_AUTO);
         }
 
         private void checkSuperZoomStatus() {
             if (this.mIsSuperZoomEnabled) {
-                this.mParameters.set(KEY_SUPERZOOM, "on");
+                this.mParameters.set(KEY_SUPERZOOM, CameraConstants.SMART_MODE_ON);
                 this.mParameters.setSceneMode(SCENE_MODE_AUTO);
                 Log.i(LGCamera.TAG, "[LGSF] lumi_low : SZ_on Scene_Auto");
                 return;
             }
-            this.mParameters.set(KEY_SUPERZOOM, "off");
+            this.mParameters.set(KEY_SUPERZOOM, CameraConstants.SMART_MODE_OFF);
             this.mParameters.setSceneMode(SCENE_MODE_NIGHT);
             Log.i(LGCamera.TAG, "[LGSF] lumi_low : SZ_off Scene_Night");
         }
@@ -368,12 +371,12 @@ public class LGCamera {
             }
             this.mIsSuperZoomEnabled = z;
             this.luminanceCondition = this.mParameters.get(KEY_LUMINANCE_CONDITION);
-            this.mIsLuminanceHigh = getParamStatus(this.luminanceCondition, "high");
+            this.mIsLuminanceHigh = getParamStatus(this.luminanceCondition, SettingMenu.VIDEO_QUALITY_HIGH);
             this.mIsLuminanceEis = getParamStatus(this.luminanceCondition, "eis");
             this.backlightCondition = this.mParameters.get(KEY_BACKLIGHT_CONDITION);
-            this.mIsHighBackLight = getParamStatus(this.backlightCondition, "high");
+            this.mIsHighBackLight = getParamStatus(this.backlightCondition, SettingMenu.VIDEO_QUALITY_HIGH);
             this.mFlashStatus = this.mParameters.get(KEY_FLASH_MODE);
-            this.mIsFlashOff = getParamStatus(this.mFlashStatus, "off");
+            this.mIsFlashOff = getParamStatus(this.mFlashStatus, CameraConstants.SMART_MODE_OFF);
             if (!this.mIsHighBackLight && this.mIsLuminanceHigh && !this.mIsSuperZoomEnabled && this.mIsFlashOff && this.mshotMode.equals("mode_normal")) {
                 Log.e(LGCamera.TAG, "[LGSF] return1");
                 LGCamera.this.mCamera.setParameters(this.mParameters);
@@ -384,12 +387,12 @@ public class LGCamera {
             if (this.mshotMode.length() > beautyShot.length()) {
                 this.mIsBeauty = this.mshotMode.substring(0, beautyShot.length());
             }
-            this.mIsFlashOn = getParamStatus(this.mFlashStatus, "on");
+            this.mIsFlashOn = getParamStatus(this.mFlashStatus, CameraConstants.SMART_MODE_ON);
             this.mIsFlashAuto = getParamStatus(this.mFlashStatus, SCENE_MODE_AUTO);
             this.mIsHDROff = getParamStatus(this.mHDRstatus, "0");
-            this.mIsHDROn = getParamStatus(this.mHDRstatus, GLESConfig.MAJOR_NUMBER);
+            this.mIsHDROn = getParamStatus(this.mHDRstatus, "1");
             this.mIsHDRAuto = getParamStatus(this.mHDRstatus, "2");
-            this.mIsCurrentFlash = getParamStatus(this.mCurrentFlash, "on");
+            this.mIsCurrentFlash = getParamStatus(this.mCurrentFlash, CameraConstants.SMART_MODE_ON);
             if (!this.mIsHighBackLight && this.mIsLuminanceHigh && !this.mIsSuperZoomEnabled && this.mIsFlashOff && this.mshotMode.equals("mode_normal")) {
                 Log.e(LGCamera.TAG, "[LGSF] return2");
             } else {
@@ -408,15 +411,15 @@ public class LGCamera {
                 setDefaultParam();
             } else if (this.mIsBeauty.equals("mode_beauty")) {
                 if (this.mshotMode.equals("mode_beauty=0")) {
-                    this.mParameters.set(KEY_BEAUTY, "off");
+                    this.mParameters.set(KEY_BEAUTY, CameraConstants.SMART_MODE_OFF);
                     Log.i(LGCamera.TAG, "[LGSF]Beautyshot : level is 0 and normal mode");
                 } else {
-                    this.mParameters.set(KEY_BEAUTY, "on");
+                    this.mParameters.set(KEY_BEAUTY, CameraConstants.SMART_MODE_ON);
                     Log.i(LGCamera.TAG, "[LGSF]Beautyshot : level is higher than 0 and  not normal mode");
                 }
                 checkLuminanceStatus();
             } else if (this.mshotMode.equals("mode_panorama")) {
-                this.mParameters.set(KEY_PANORAMA, GLESConfig.MAJOR_NUMBER);
+                this.mParameters.set(KEY_PANORAMA, "1");
                 Log.i(LGCamera.TAG, "[LGSF]Panorama shot mode");
             }
         }
@@ -434,9 +437,9 @@ public class LGCamera {
             }
             this.mIsSuperZoomEnabled = z;
             if (this.mIsSuperZoomEnabled) {
-                this.mParameters.set(KEY_SUPERZOOM, "on");
+                this.mParameters.set(KEY_SUPERZOOM, CameraConstants.SMART_MODE_ON);
             } else {
-                this.mParameters.set(KEY_SUPERZOOM, "off");
+                this.mParameters.set(KEY_SUPERZOOM, CameraConstants.SMART_MODE_OFF);
             }
             LGCamera.this.mCamera.setParameters(this.mParameters);
             return this.mParameters;
@@ -484,10 +487,10 @@ public class LGCamera {
     private final native void native_setOBTDataCallbackMode(Camera camera, boolean z);
 
     static {
-		try {
-        System.loadLibrary("hook_jni");
-		} catch (UnsatisfiedLinkError e) {
-            CamLog.e("CameraApp", "can't loadLibrary hook_jni\r\n" + e.getMessage());
+        try {
+            System.loadLibrary("hook_jni");
+        } catch (UnsatisfiedLinkError e) {
+            CamLog.e(FaceDetector.TAG, "can't loadLibrary hook_jni\r\n" + e.getMessage());
         }
         sSplitAreaMethod = ProxyUtil.loadMethod(Parameters.class, "splitArea", String.class);
     }
@@ -542,7 +545,7 @@ public class LGCamera {
     private static int byteToInt(byte[] b, int offset) {
         int value = 0;
         for (int i = 0; i < CAMERA_META_DATA_HDR_INDICATOR; i++) {
-            value += (b[(3 - i) + offset] & AspSessionProtoOpcode.NACK) << ((3 - i) * CAMERA_META_DATA_FLASH_INDICATOR);
+            value += (b[(3 - i) + offset] & Ola_ShotParam.AnimalMask_Random) << ((3 - i) * CAMERA_META_DATA_FLASH_INDICATOR);
         }
         return value;
     }

@@ -17,7 +17,7 @@ public class SetRefocusShot extends SettingCommand {
     }
 
     public void execute(LGParameters lgParameters, Object arg) {
-        if (Setting.HELP_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE))) {
+        if (LGParameters.SCENE_MODE_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE))) {
             this.mGet.setSetting(Setting.KEY_SCENE_MODE, LGT_Limit.ISP_AUTOMODE_AUTO);
             this.mGet.setSceneModeForAdvanced(lgParameters.getParameters(), LGT_Limit.ISP_AUTOMODE_AUTO);
         }

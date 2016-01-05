@@ -33,7 +33,7 @@ public class SetSuperZoom extends SettingCommand {
             CamLog.d(FaceDetector.TAG, "Super zoom : Super zoom's not supported. Return.");
         } else if (!FunctionProperties.isZslSupported()) {
             CamLog.d(FaceDetector.TAG, "Super zoom : ZSL's not supported. Return.");
-        } else if (!checkShotModeForSuperZoom() || !CameraConstants.SMART_MODE_OFF.equals(this.mGet.getSettingValue(Setting.KEY_FLASH)) || Setting.HELP_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE))) {
+        } else if (!checkShotModeForSuperZoom() || !CameraConstants.SMART_MODE_OFF.equals(this.mGet.getSettingValue(Setting.KEY_FLASH)) || LGParameters.SCENE_MODE_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE))) {
             CamLog.d(FaceDetector.TAG, "Super zoom : Shot mode's wrong or flash's on or scene mode is 'night'.");
             if (CameraConstants.SMART_MODE_ON.equals(lgParameters.getParameters().get(CameraConstants.PARAMETER_SUPERZOOM))) {
                 CamLog.d(FaceDetector.TAG, "Set super zoom off and return. Super zoom set to OFF.");

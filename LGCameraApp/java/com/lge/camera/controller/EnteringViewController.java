@@ -29,6 +29,7 @@ import com.lge.camera.util.CamLog;
 import com.lge.camera.util.ColorUtil;
 import com.lge.camera.util.Common;
 import com.lge.camera.util.Util;
+import com.lge.hardware.LGCamera.LGParameters;
 import com.lge.morpho.utils.multimedia.MediaProviderUtils;
 import com.lge.olaworks.define.Ola_Exif.Tag;
 import com.lge.olaworks.library.FaceDetector;
@@ -199,7 +200,7 @@ public class EnteringViewController {
             edit.putBoolean(Setting.HELP_SPORTS, isCheck);
         }
         if (FunctionProperties.isSupportNightShotModeMenu(1)) {
-            edit.putBoolean(Setting.HELP_NIGHT, isCheck);
+            edit.putBoolean(LGParameters.SCENE_MODE_NIGHT, isCheck);
         }
         edit.apply();
     }
@@ -209,7 +210,7 @@ public class EnteringViewController {
         PreferenceInflater inflater = new PreferenceInflater(activity);
         PreferenceGroup cameraPrefGroup = (PreferenceGroup) inflater.inflate(PreferenceProperties.getBackCameraPreferenceResource());
         PreferenceGroup camcorderPrefGroup = (PreferenceGroup) inflater.inflate(PreferenceProperties.getBackCamcorderPreferenceResource());
-        if (pref != null && pref.getBoolean(CameraConstants.ENTERING_GUIDE, false) && pref.getBoolean(Setting.HELP_VOICE_PHOTO, false) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_HDR, pref, Setting.HELP_HDR) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_TIMEMACHINE, pref, Setting.HELP_TIMEMACHINE) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_PANORAMA, pref, Setting.HELP_PANORAMA) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_PLANE_PANORAMA, pref, Setting.HELP_PLANE_PANORAMA) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_FREE_PANORAMA, pref, Setting.HELP_FREE_PANORAMA) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_DUAL_CAMERA, pref, Setting.HELP_DUAL_CAMERA) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_CLEAR_SHOT, pref, Setting.HELP_CLEAR_SHOT) && checkRecordModeHelp(camcorderPrefGroup, CameraConstants.TYPE_RECORDMODE_LIVE_EFFECT, pref, Setting.HELP_LIVE_EFFECT) && checkRecordModeHelp(camcorderPrefGroup, CameraConstants.TYPE_RECORDMODE_DUAL, pref, Setting.HELP_DUAL_RECORDING) && checkRecordModeHelp(camcorderPrefGroup, CameraConstants.TYPE_RECORDMODE_SMART_ZOOM, pref, Setting.HELP_SMART_ZOOM_RECORDING) && checkOtherHelp(FunctionProperties.isSupportSmartMode(), pref, Setting.HELP_INTELLIGENT_AUTO_MODE) && checkOtherHelp(FunctionProperties.isSupportAudiozoom(), pref, Setting.HELP_AUDIOZOOM) && checkOtherHelp(FunctionProperties.isSupportSportShot(), pref, Setting.HELP_SPORTS) && checkOtherHelp(FunctionProperties.isSupportNightShotModeMenu(1), pref, Setting.HELP_NIGHT) && checkOtherHelp(FunctionProperties.isSupportBurstShot(), pref, Setting.HELP_BURST_SHOT) && checkOtherHelp(FunctionProperties.isFullFrameContinuousShotSupported(), pref, Setting.HELP_CONTINUOUS_SHOT)) {
+        if (pref != null && pref.getBoolean(CameraConstants.ENTERING_GUIDE, false) && pref.getBoolean(Setting.HELP_VOICE_PHOTO, false) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_HDR, pref, Setting.HELP_HDR) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_TIMEMACHINE, pref, Setting.HELP_TIMEMACHINE) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_PANORAMA, pref, Setting.HELP_PANORAMA) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_PLANE_PANORAMA, pref, Setting.HELP_PLANE_PANORAMA) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_FREE_PANORAMA, pref, Setting.HELP_FREE_PANORAMA) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_DUAL_CAMERA, pref, Setting.HELP_DUAL_CAMERA) && checkShotModeHelp(cameraPrefGroup, CameraConstants.TYPE_SHOTMODE_CLEAR_SHOT, pref, Setting.HELP_CLEAR_SHOT) && checkRecordModeHelp(camcorderPrefGroup, CameraConstants.TYPE_RECORDMODE_LIVE_EFFECT, pref, Setting.HELP_LIVE_EFFECT) && checkRecordModeHelp(camcorderPrefGroup, CameraConstants.TYPE_RECORDMODE_DUAL, pref, Setting.HELP_DUAL_RECORDING) && checkRecordModeHelp(camcorderPrefGroup, CameraConstants.TYPE_RECORDMODE_SMART_ZOOM, pref, Setting.HELP_SMART_ZOOM_RECORDING) && checkOtherHelp(FunctionProperties.isSupportSmartMode(), pref, Setting.HELP_INTELLIGENT_AUTO_MODE) && checkOtherHelp(FunctionProperties.isSupportAudiozoom(), pref, Setting.HELP_AUDIOZOOM) && checkOtherHelp(FunctionProperties.isSupportSportShot(), pref, Setting.HELP_SPORTS) && checkOtherHelp(FunctionProperties.isSupportNightShotModeMenu(1), pref, LGParameters.SCENE_MODE_NIGHT) && checkOtherHelp(FunctionProperties.isSupportBurstShot(), pref, Setting.HELP_BURST_SHOT) && checkOtherHelp(FunctionProperties.isFullFrameContinuousShotSupported(), pref, Setting.HELP_CONTINUOUS_SHOT)) {
             boolean z;
             if (FunctionProperties.isWDRSupported() && FunctionProperties.isHDRRecordingNameUsed()) {
                 z = true;

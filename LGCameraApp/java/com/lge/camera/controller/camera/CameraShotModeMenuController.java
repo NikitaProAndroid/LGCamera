@@ -11,6 +11,7 @@ import com.lge.camera.properties.FunctionProperties;
 import com.lge.camera.properties.ModelProperties;
 import com.lge.camera.setting.ListPreference;
 import com.lge.camera.setting.Setting;
+import com.lge.hardware.LGCamera.LGParameters;
 import com.lge.olaworks.define.LGT_Limit;
 
 public class CameraShotModeMenuController extends ShotModeMenuController {
@@ -151,14 +152,14 @@ public class CameraShotModeMenuController extends ShotModeMenuController {
         int titleId = 0;
         int messageTextId = 0;
         int messageImageId = 0;
-        if (LGT_Limit.ISP_ORIENTATION_PORTRAIT.equals(sceneMode) || LGT_Limit.ISP_ORIENTATION_LANDSCAPE.equals(sceneMode) || CameraConstants.SCENE_MODE_SUNSET.equals(sceneMode) || CameraConstants.SCENE_MODE_SMART_SHUTTER.equals(sceneMode) || ((!FunctionProperties.isSupportNightShotModeMenu(this.mGet.getCameraId()) && Setting.HELP_NIGHT.equals(sceneMode)) || (!FunctionProperties.isSupportSportShot() && Setting.HELP_SPORTS.equals(sceneMode)))) {
+        if (LGT_Limit.ISP_ORIENTATION_PORTRAIT.equals(sceneMode) || LGT_Limit.ISP_ORIENTATION_LANDSCAPE.equals(sceneMode) || CameraConstants.SCENE_MODE_SUNSET.equals(sceneMode) || CameraConstants.SCENE_MODE_SMART_SHUTTER.equals(sceneMode) || ((!FunctionProperties.isSupportNightShotModeMenu(this.mGet.getCameraId()) && LGParameters.SCENE_MODE_NIGHT.equals(sceneMode)) || (!FunctionProperties.isSupportSportShot() && Setting.HELP_SPORTS.equals(sceneMode)))) {
             return null;
         }
         if (Setting.HELP_SPORTS.equals(sceneMode)) {
             titleId = R.string.scene_mode_sports;
             messageTextId = R.string.sp_help_scene_mode_menu_sports_desc_v2_NORMAL;
             messageImageId = R.drawable.levellist_camera_mode_image_scene_sports;
-        } else if (Setting.HELP_NIGHT.equals(sceneMode)) {
+        } else if (LGParameters.SCENE_MODE_NIGHT.equals(sceneMode)) {
             titleId = R.string.scene_mode_night;
             messageTextId = R.string.help_scene_mode_menu_night_desc_new;
             messageImageId = R.drawable.levellist_camera_mode_image_scene_night;

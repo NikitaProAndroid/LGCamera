@@ -7,7 +7,7 @@ import com.lge.camera.properties.CameraConstants;
 import com.lge.camera.properties.FunctionProperties;
 import com.lge.camera.properties.ModelProperties;
 import com.lge.camera.properties.ProjectVariables;
-import com.lge.camera.setting.Setting;
+import com.lge.hardware.LGCamera.LGParameters;
 import com.lge.olaworks.library.FaceDetector;
 import com.lge.voiceshutter.library.LGKeyRec;
 import java.text.SimpleDateFormat;
@@ -904,7 +904,7 @@ public class FileNamer {
                 sCount = "0" + sCount;
             }
             return "_Burst" + sCount;
-        } else if (!shotmode.equals(CameraConstants.TYPE_SHOTMODE_NORMAL) || !this.mScenemode.equals(Setting.HELP_NIGHT)) {
+        } else if (!shotmode.equals(CameraConstants.TYPE_SHOTMODE_NORMAL) || !this.mScenemode.equals(LGParameters.SCENE_MODE_NIGHT)) {
             return "";
         } else {
             String sMode = "_Night";

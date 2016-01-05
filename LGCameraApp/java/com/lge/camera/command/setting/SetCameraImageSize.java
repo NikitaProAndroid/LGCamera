@@ -608,7 +608,7 @@ public class SetCameraImageSize extends SettingCommand {
                 }
             } else if (this.mGet.getCameraId() == 1) {
                 fpsValues = SystemProperties.get("persist.data.front.minfps", MultimediaProperties.getFrontCameraFrameRateNormalRangeMin() + "," + MultimediaProperties.getFrontCameraFrameRateNightModeRangeMin()).split(",");
-                if (Setting.HELP_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE))) {
+                if (LGParameters.SCENE_MODE_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE))) {
                     parameters.setPreviewFpsRange(Integer.parseInt(fpsValues[1]), MultimediaProperties.getCameraFrameRateNormalRangeMax());
                 } else {
                     parameters.setPreviewFpsRange(Integer.parseInt(fpsValues[0]), MultimediaProperties.getCameraFrameRateNormalRangeMax());
@@ -619,7 +619,7 @@ public class SetCameraImageSize extends SettingCommand {
                 parameters.setPreviewFpsRange(MultimediaProperties.getCameraFrameRateBurstShotModeRangeMin(), MultimediaProperties.getCameraFrameRateNormalRangeMax());
             } else {
                 fpsValues = SystemProperties.get("persist.data.rear.minfps", MultimediaProperties.getCameraFrameRateNormalRangeMin() + "," + MultimediaProperties.getCameraFrameRateNightModeRangeMin()).split(",");
-                if (Setting.HELP_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE))) {
+                if (LGParameters.SCENE_MODE_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE))) {
                     parameters.setPreviewFpsRange(Integer.parseInt(fpsValues[1]), MultimediaProperties.getCameraFrameRateNormalRangeMax());
                 } else {
                     parameters.setPreviewFpsRange(Integer.parseInt(fpsValues[0]), MultimediaProperties.getCameraFrameRateNormalRangeMax());

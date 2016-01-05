@@ -123,7 +123,7 @@ public class SetSmartCameraMode extends SettingCommand {
             this.mGet.quickFunctionControllerInitMenu();
             this.mGet.quickFunctionControllerRefresh(true);
             this.mGet.updateSizeIndicator();
-            if (ModelProperties.isRenesasISP() && Setting.HELP_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE))) {
+            if (ModelProperties.isRenesasISP() && LGParameters.SCENE_MODE_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE))) {
                 this.mGet.postOnUiThread(new Runnable() {
                     public void run() {
                         SetSmartCameraMode.this.mGet.removePostRunnable(this);

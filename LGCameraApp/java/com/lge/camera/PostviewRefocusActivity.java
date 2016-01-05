@@ -893,27 +893,27 @@ public class PostviewRefocusActivity extends ShotPostviewActivity implements Pos
     }
 
     private void makeDepthMapInfo() {
+        DataInputStream dis;
         Exception e;
         FileInputStream fileInputStream;
         Throwable th;
-        DataInputStream dis = null;
+        DataInputStream dis2 = null;
         try {
-            DataInputStream dis2;
             File mapFile = new File(this.mPostViewParameters.getTimeMachineStorageDirectory() + CameraConstants.REFOCUS_MAP_FILE);
             int mapFileSize = (int) mapFile.length();
             CamLog.d(FaceDetector.TAG, "mapFile.length() = " + mapFileSize);
             this.mMapBuf = new byte[((int) mapFile.length())];
             FileInputStream fis = new FileInputStream(mapFile);
             try {
-                dis2 = new DataInputStream(fis);
+                dis = new DataInputStream(fis);
             } catch (Exception e2) {
                 e = e2;
                 fileInputStream = fis;
                 try {
                     CamLog.e(FaceDetector.TAG, "Map file reading fail : ", e);
-                    if (dis == null) {
+                    if (dis2 == null) {
                         try {
-                            dis.close();
+                            dis2.close();
                         } catch (IOException e3) {
                             CamLog.e(FaceDetector.TAG, "BufferedInpuStream cloase fail.");
                             return;
@@ -921,9 +921,9 @@ public class PostviewRefocusActivity extends ShotPostviewActivity implements Pos
                     }
                 } catch (Throwable th2) {
                     th = th2;
-                    if (dis != null) {
+                    if (dis2 != null) {
                         try {
-                            dis.close();
+                            dis2.close();
                         } catch (IOException e4) {
                             CamLog.e(FaceDetector.TAG, "BufferedInpuStream cloase fail.");
                         }
@@ -933,22 +933,22 @@ public class PostviewRefocusActivity extends ShotPostviewActivity implements Pos
             } catch (Throwable th3) {
                 th = th3;
                 fileInputStream = fis;
-                if (dis != null) {
-                    dis.close();
+                if (dis2 != null) {
+                    dis2.close();
                 }
                 throw th;
             }
             try {
-                dis2.readFully(this.mMapBuf);
+                dis.readFully(this.mMapBuf);
                 int metaStartPos = mapFileSize - 25;
-                dis2.close();
-                dis = null;
+                dis.close();
+                dis2 = null;
                 CamLog.d(FaceDetector.TAG, "Refocus metadata mark : " + (this.mMapBuf[metaStartPos] & Ola_ShotParam.AnimalMask_Random));
                 this.mDepthWidth = (long) (((((this.mMapBuf[metaStartPos + ANI_RUNNING] & Ola_ShotParam.AnimalMask_Random) << 24) | ((this.mMapBuf[metaStartPos + ANI_END] & Ola_ShotParam.AnimalMask_Random) << 16)) | ((this.mMapBuf[metaStartPos + 3] & Ola_ShotParam.AnimalMask_Random) << 8)) | (this.mMapBuf[metaStartPos + 4] & Ola_ShotParam.AnimalMask_Random));
                 this.mDepthHeight = (long) (((((this.mMapBuf[metaStartPos + 5] & Ola_ShotParam.AnimalMask_Random) << 24) | ((this.mMapBuf[metaStartPos + 6] & Ola_ShotParam.AnimalMask_Random) << 16)) | ((this.mMapBuf[metaStartPos + 7] & Ola_ShotParam.AnimalMask_Random) << 8)) | (this.mMapBuf[metaStartPos + 8] & Ola_ShotParam.AnimalMask_Random));
-                if (dis != null) {
+                if (dis2 != null) {
                     try {
-                        dis.close();
+                        dis2.close();
                         fileInputStream = fis;
                         return;
                     } catch (IOException e5) {
@@ -959,26 +959,26 @@ public class PostviewRefocusActivity extends ShotPostviewActivity implements Pos
                 }
             } catch (Exception e6) {
                 e = e6;
-                dis = dis2;
+                dis2 = dis;
                 fileInputStream = fis;
                 CamLog.e(FaceDetector.TAG, "Map file reading fail : ", e);
-                if (dis == null) {
-                    dis.close();
+                if (dis2 == null) {
+                    dis2.close();
                 }
             } catch (Throwable th4) {
                 th = th4;
-                dis = dis2;
+                dis2 = dis;
                 fileInputStream = fis;
-                if (dis != null) {
-                    dis.close();
+                if (dis2 != null) {
+                    dis2.close();
                 }
                 throw th;
             }
         } catch (Exception e7) {
             e = e7;
             CamLog.e(FaceDetector.TAG, "Map file reading fail : ", e);
-            if (dis == null) {
-                dis.close();
+            if (dis2 == null) {
+                dis2.close();
             }
         }
     }

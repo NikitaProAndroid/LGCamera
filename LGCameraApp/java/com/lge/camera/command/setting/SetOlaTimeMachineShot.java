@@ -24,7 +24,7 @@ public class SetOlaTimeMachineShot extends SettingCommand {
         CamLog.d(FaceDetector.TAG, "SetOlaTimeMachineShot");
         if (!(this.mGet.getCurrentModule() instanceof TimeMachineShot)) {
             lgParameters.getParameters().set(CameraConstants.PARAM_KEY_DUAL_RECORDER, 0);
-            if (Setting.HELP_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE))) {
+            if (LGParameters.SCENE_MODE_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE))) {
                 this.mGet.setSetting(Setting.KEY_SCENE_MODE, LGT_Limit.ISP_AUTOMODE_AUTO);
                 this.mGet.setSceneModeForAdvanced(lgParameters.getParameters(), LGT_Limit.ISP_AUTOMODE_AUTO);
             }

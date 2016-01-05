@@ -4550,7 +4550,7 @@ public abstract class Mediator implements ControllerFunction, HandlerFunction, A
                 if (getApplicationMode() == 0) {
                     if (ModelProperties.isRenesasISP()) {
                         setSceneModeForAdvanced(lgParameters.getParameters(), LGT_Limit.ISP_AUTOMODE_AUTO);
-                        if (!(CameraConstants.TYPE_SHOTMODE_DUAL_CAMERA.equals(getSettingValue(Setting.KEY_CAMERA_SHOT_MODE)) || CameraConstants.TYPE_SHOTMODE_FRONT_BEAUTY.equals(getSettingValue(Setting.KEY_CAMERA_SHOT_MODE)) || CameraConstants.TYPE_SHOTMODE_MAIN_BEAUTY.equals(getSettingValue(Setting.KEY_CAMERA_SHOT_MODE)) || (!CameraConstants.SCENE_MODE_SMART_SHUTTER.equals(previeousSceneMode) && !Setting.HELP_NIGHT.equals(previeousSceneMode)))) {
+                        if (!(CameraConstants.TYPE_SHOTMODE_DUAL_CAMERA.equals(getSettingValue(Setting.KEY_CAMERA_SHOT_MODE)) || CameraConstants.TYPE_SHOTMODE_FRONT_BEAUTY.equals(getSettingValue(Setting.KEY_CAMERA_SHOT_MODE)) || CameraConstants.TYPE_SHOTMODE_MAIN_BEAUTY.equals(getSettingValue(Setting.KEY_CAMERA_SHOT_MODE)) || (!CameraConstants.SCENE_MODE_SMART_SHUTTER.equals(previeousSceneMode) && !LGParameters.SCENE_MODE_NIGHT.equals(previeousSceneMode)))) {
                             restartPreview(lgParameters, false);
                         }
                     } else {
@@ -4601,7 +4601,7 @@ public abstract class Mediator implements ControllerFunction, HandlerFunction, A
             if (CameraConstants.TYPE_SHOTMODE_PANORAMA.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_PLANE_PANORAMA.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_FREE_PANORAMA.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_CONTINUOUS.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_FULL_CONTINUOUS.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_HDR.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_CLEAR_SHOT.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_DUAL_CAMERA.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_REFOCUS.equals(shotMode) || getCameraId() == 1 || isTimeMachineModeOn()) {
                 return false;
             }
-            if ((CameraConstants.TYPE_SHOTMODE_NORMAL.equals(shotMode) || CameraConstants.TYPE_PREFERENCE_NOT_FOUND.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_MAIN_BEAUTY.equals(shotMode) || getCameraId() == 0) && Setting.HELP_NIGHT.equals(getSettingValue(Setting.KEY_SCENE_MODE))) {
+            if ((CameraConstants.TYPE_SHOTMODE_NORMAL.equals(shotMode) || CameraConstants.TYPE_PREFERENCE_NOT_FOUND.equals(shotMode) || CameraConstants.TYPE_SHOTMODE_MAIN_BEAUTY.equals(shotMode) || getCameraId() == 0) && LGParameters.SCENE_MODE_NIGHT.equals(getSettingValue(Setting.KEY_SCENE_MODE))) {
                 return false;
             }
         }

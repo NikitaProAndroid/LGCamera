@@ -246,6 +246,7 @@ public class Common {
     }
 
     public static String getFileNamePathFromUri(ContentResolver resolver, Uri uri) {
+        File file;
         Exception ex;
         Throwable th;
         CamLog.i(FaceDetector.TAG, "getFileNamePathFromUri uri = " + uri.toString());
@@ -263,14 +264,13 @@ public class Common {
             int column_index = cursor.getColumnIndexOrThrow("_data");
             if (cursor.moveToFirst()) {
                 CamLog.d(FaceDetector.TAG, "path from Uri: " + cursor.getString(column_index));
-                File file = new File(cursor.getString(column_index));
-                File file2;
+                File file2 = new File(cursor.getString(column_index));
                 try {
-                    result = file.getName();
-                    file2 = file;
+                    result = file2.getName();
+                    file = file2;
                 } catch (Exception e) {
                     ex = e;
-                    file2 = file;
+                    file = file2;
                     try {
                         CamLog.e(FaceDetector.TAG, "managedQuery() Exception! " + ex.toString());
                         result = null;
@@ -287,7 +287,7 @@ public class Common {
                     }
                 } catch (Throwable th3) {
                     th = th3;
-                    file2 = file;
+                    file = file2;
                     if (cursor != null) {
                         cursor.close();
                     }

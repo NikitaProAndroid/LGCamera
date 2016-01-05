@@ -9,6 +9,7 @@ import com.lge.camera.util.CamLog;
 import com.lge.camera.util.Common;
 import com.lge.camera.util.FileNamer;
 import com.lge.camera.util.GpsLocation;
+import com.lge.hardware.LGCamera.LGParameters;
 import com.lge.olaworks.define.LGT_Limit;
 import com.lge.olaworks.define.Ola_ShotParam;
 import com.lge.olaworks.library.FaceDetector;
@@ -279,7 +280,7 @@ public class TakePicture extends Command {
                     switch (this.mGet.getCurrentIAMode()) {
                         case LGKeyRec.EVENT_INCOMPLETE /*2*/:
                         case LGKeyRec.EVENT_STARTED /*3*/:
-                            parameters.setSceneMode(Setting.HELP_NIGHT);
+                            parameters.setSceneMode(LGParameters.SCENE_MODE_NIGHT);
                             parameters.set(CameraConstants.HDR_MODE, "0");
                             break;
                         case LGKeyRec.EVENT_START_OF_VOICING /*5*/:
@@ -297,28 +298,28 @@ public class TakePicture extends Command {
             } else if (!CameraConstants.SMART_MODE_OFF.equals(this.mGet.getSettingValue(Setting.KEY_SMART_MODE)) || CameraConstants.SMART_MODE_ON.equals(this.mGet.getSettingValue(Setting.KEY_FLASH)) || Setting.HELP_SPORTS.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE)) || !this.mGet.checkSettingValue(Setting.KEY_CAMERA_SHOT_MODE, CameraConstants.TYPE_SHOTMODE_NORMAL)) {
                 if (this.mGet.getCameraId() == 1 && this.mGet.checkSettingValue(Setting.KEY_CAMERA_SHOT_MODE, CameraConstants.TYPE_SHOTMODE_NORMAL) && Common.isLowLuminance(this.mGet.getParameters(), true)) {
                     CamLog.d(FaceDetector.TAG, "Auto night mode.");
-                    parameters.setSceneMode(Setting.HELP_NIGHT);
+                    parameters.setSceneMode(LGParameters.SCENE_MODE_NIGHT);
                 }
             } else if (FunctionProperties.isSupportMorphoNightShot()) {
                 superZoomStatus = this.mGet.getParameters().get(CameraConstants.PARAMETER_SUPERZOOM);
                 if (Common.isLowLuminance(this.mGet.getParameters(), true) && ((superZoomStatus != null && CameraConstants.SMART_MODE_OFF.equals(superZoomStatus)) || superZoomStatus == null)) {
                     CamLog.d(FaceDetector.TAG, "Auto night mode.");
-                    parameters.setSceneMode(Setting.HELP_NIGHT);
+                    parameters.setSceneMode(LGParameters.SCENE_MODE_NIGHT);
                 }
             }
         } else if (CameraConstants.SMART_MODE_ON.equals(this.mGet.getSettingValue(Setting.KEY_FLASH)) || Setting.HELP_SPORTS.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE)) || !this.mGet.checkSettingValue(Setting.KEY_CAMERA_SHOT_MODE, CameraConstants.TYPE_SHOTMODE_NORMAL)) {
             if (this.mGet.getCameraId() == 1 && ((this.mGet.checkSettingValue(Setting.KEY_CAMERA_SHOT_MODE, CameraConstants.TYPE_SHOTMODE_NORMAL) || this.mGet.checkSettingValue(Setting.KEY_CAMERA_SHOT_MODE, CameraConstants.TYPE_PREFERENCE_NOT_FOUND)) && FunctionProperties.isSupportMorphoNightShot() && Common.isLowLuminance(this.mGet.getParameters(), true))) {
                 CamLog.d(FaceDetector.TAG, "Auto night mode.");
-                parameters.setSceneMode(Setting.HELP_NIGHT);
+                parameters.setSceneMode(LGParameters.SCENE_MODE_NIGHT);
             }
         } else if (FunctionProperties.isSupportMorphoNightShot()) {
             superZoomStatus = this.mGet.getParameters().get(CameraConstants.PARAMETER_SUPERZOOM);
             if (Common.isLowLuminance(this.mGet.getParameters(), true) && ((superZoomStatus != null && CameraConstants.SMART_MODE_OFF.equals(superZoomStatus)) || superZoomStatus == null)) {
                 CamLog.d(FaceDetector.TAG, "Auto night mode.");
-                parameters.setSceneMode(Setting.HELP_NIGHT);
+                parameters.setSceneMode(LGParameters.SCENE_MODE_NIGHT);
             }
         }
-        if (Setting.HELP_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE)) || this.mGet.checkSettingValue(Setting.KEY_CAMERA_SHOT_MODE, CameraConstants.TYPE_SHOTMODE_HDR)) {
+        if (LGParameters.SCENE_MODE_NIGHT.equals(this.mGet.getSettingValue(Setting.KEY_SCENE_MODE)) || this.mGet.checkSettingValue(Setting.KEY_CAMERA_SHOT_MODE, CameraConstants.TYPE_SHOTMODE_HDR)) {
             this.mGet.setNeedProgressDuringCapture(true);
         }
     }

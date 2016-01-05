@@ -1325,7 +1325,7 @@ public class CameraMediator extends Mediator implements ImageSaverCallback {
             String[] fpsValues;
             if (getCameraId() == 1) {
                 fpsValues = SystemProperties.get("persist.data.front.minfps", MultimediaProperties.getFrontCameraFrameRateNormalRangeMin() + "," + MultimediaProperties.getFrontCameraFrameRateNightModeRangeMin()).split(",");
-                if (!Setting.HELP_NIGHT.equals(sceneMode)) {
+                if (!LGParameters.SCENE_MODE_NIGHT.equals(sceneMode)) {
                     parameters.setPreviewFpsRange(Integer.parseInt(fpsValues[0]), MultimediaProperties.getCameraFrameRateNormalRangeMax());
                 } else if (ModelProperties.getProjectCode() != 6) {
                     parameters.setPreviewFpsRange(Integer.parseInt(fpsValues[1]), MultimediaProperties.getCameraFrameRateNormalRangeMax());
@@ -1336,7 +1336,7 @@ public class CameraMediator extends Mediator implements ImageSaverCallback {
                 parameters.setPreviewFpsRange(MultimediaProperties.getCameraFrameRateBurstShotModeRangeMin(), MultimediaProperties.getCameraFrameRateNormalRangeMax());
             } else {
                 fpsValues = SystemProperties.get("persist.data.rear.minfps", MultimediaProperties.getCameraFrameRateNormalRangeMin() + "," + MultimediaProperties.getCameraFrameRateNightModeRangeMin()).split(",");
-                if (Setting.HELP_NIGHT.equals(sceneMode)) {
+                if (LGParameters.SCENE_MODE_NIGHT.equals(sceneMode)) {
                     parameters.setPreviewFpsRange(Integer.parseInt(fpsValues[1]), MultimediaProperties.getCameraFrameRateNormalRangeMax());
                 } else {
                     parameters.setPreviewFpsRange(Integer.parseInt(fpsValues[0]), MultimediaProperties.getCameraFrameRateNormalRangeMax());

@@ -13,6 +13,7 @@ import com.lge.camera.properties.CameraConstants;
 import com.lge.camera.properties.FunctionProperties;
 import com.lge.camera.properties.ModelProperties;
 import com.lge.camera.setting.Setting;
+import com.lge.hardware.LGCamera.LGParameters;
 
 public class DialogCreater {
     public static final int DIALOG_ID_AU_CLOUD = 28;
@@ -154,7 +155,7 @@ public class DialogCreater {
         strArr3[DIALOG_ID_EXTERNAL_STORAGE_FULL] = String.valueOf(DIALOG_ID_HELP_SPORTS);
         strArr[DIALOG_ID_CANNOT_CONNECT_CAMERA] = strArr3;
         strArr3 = new String[DIALOG_ID_STORAGE_FULL_SAVE];
-        strArr3[DIALOG_ID_NO_EXTERNAL] = Setting.HELP_NIGHT;
+        strArr3[DIALOG_ID_NO_EXTERNAL] = LGParameters.SCENE_MODE_NIGHT;
         strArr3[DIALOG_ID_EXTERNAL_STORAGE_FULL] = String.valueOf(DIALOG_ID_HELP_NIGHT);
         strArr[DIALOG_ID_CAMERA_DRIVER_NEED_RESET] = strArr3;
         strArr3 = new String[DIALOG_ID_STORAGE_FULL_SAVE];
