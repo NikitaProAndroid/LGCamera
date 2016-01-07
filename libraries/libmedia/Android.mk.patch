@@ -1,0 +1,12 @@
+--- Android.mk	2016-01-07 21:44:10.357295512 +1000
++++ Android2.mk	2016-01-07 20:43:18.515976000 +1000
+@@ -71,7 +71,8 @@
+     SoundPool.cpp \
+     SoundPoolThread.cpp \
+     StringArray.cpp \
+-    AudioPolicy.cpp
++    AudioPolicy.cpp \
++    HookJni-compat.cpp
+ 
+ LOCAL_SRC_FILES += ../libnbaio/roundup.c
+ 
